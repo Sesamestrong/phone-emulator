@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google</title>
+    <link rel="icon" href="https://cdn4.iconfinder.com/data/icons/new-google-logo-2015/400/new-google-favicon-512.png">
+	<script>
+		var whichPhone="nexus5";
+		var whichColor="black";
+		var orientation="portrait";
+		var apple=["iphonex","iphone6s"];
+		var screenSize={
+			nexus5:620,
+			iphonex:660,
+			iphone6s:660,
+		};
+		var screenOnly=false;
+		var ios="";
+		var androidos="";
+		var appleurl="";
+		var androidurl="";
+		function updateUrl(){
+			androidurl="https://appetize.io/embed/xc1w6f1krd589zhp22a0mgftyw?screenOnly="+screenOnly+"&autoplay=true&embed=true&device="+whichPhone+"&launchUrl=exp:%2F%2Fexpo.io%2F@snack%2Fsdk.27.0.0-HJ0VvlWCG&xdocMsg=true&deviceColor="+whichColor+"&xDocMsg=true&orientation="+orientation+"&debug=true&params=%7B%22EXKernelLaunchUrlDefaultsKey%22:%22exp:%2F%2Fexpo.io%2F@snack%2Fsdk.27.0.0-HJ0VvlWCG%22,%22EXKernelDisableNuxDefaultsKey%22:true%7D&scale=75&osVersion="+androidos;
+			appleurl="https://appetize.io/embed/8bnmakzrptf1hv9dq7v7bnteem?screenOnly="+screenOnly+"&autoplay=true&embed=true&device="+whichPhone+"&xdocMsg=true&deviceColor="+whichColor+"&xDocMsg=true&orientation="+orientation+"&debug=true&params=%7B%22EXKernelLaunchUrlDefaultsKey%22:%22exp:%2F%2Fexpo.io%2F@snack%2Fsdk.27.0.0-HJ0VvlWCG%22,%22EXKernelDisableNuxDefaultsKey%22:true%7D&scale=75&osVersion="+ios;
+			if(apple.includes(whichPhone)){document.getElementById('iframethingy').src=appleurl;} else{document.getElementById('iframethingy').src=androidurl;}
+			document.getElementById('iframethingy').height=screenSize[whichPhone];
+		}
+		function updatePhone(){
+			whichPhone=document.f.phoneType.value;
+			if(apple.includes(whichPhone)){document.getElementById('apple').style.display="block";document.getElementById('android').style.display="none";}
+			else{document.getElementById('android').style.display="block";document.getElementById('apple').style.display="none";}
+		}
+		function updateOs(){
+		androidos=document.f.androidos.value;
+		ios=document.f.ios.value;
+		}
+		function updateColor(){
+		if(document.f.whichColor.value=="none"){screenOnly=true;} else{screenOnly=false;whichColor=document.f.whichColor.value;}
+		}
+		function updateOrientation(){
+		orientation=document.f.orientation.value;
+		}
+	</script>
+  </head>
+  <body>
+    <center><iframe frameborder="0" scrolling="no" width=330 height=620 id="iframethingy" src="https://appetize.io/embed/xc1w6f1krd589zhp22a0mgftyw?screenOnly=false&autoplay=false&embed=true&device=nexus5&launchUrl=exp:%2F%2Fexpo.io%2F@snack%2Fsdk.27.0.0-HJ0VvlWCG&xdocMsg=true&deviceColor=black&xDocMsg=true&orientation=portrait&debug=true&params=%7B%22EXKernelLaunchUrlDefaultsKey%22:%22exp:%2F%2Fexpo.io%2F@snack%2Fsdk.27.0.0-HJ0VvlWCG%22,%22EXKernelDisableNuxDefaultsKey%22:true%7D&scale=75&osVersion=7.1"></iframe>
+    <br/>
+	<form name="f">
+	<h2>Pick a Phone</h2>
+	<input type="radio" name="phoneType" value="nexus5" checked onclick="updatePhone();">Nexus 5<br/>
+	<input type="radio" name="phoneType" value="iphonex" onclick="updatePhone();">iPhone X<br/>
+	<input type="radio" name="phoneType" value="iphone6s" onclick="updatePhone();">iPhone 6s<br/>
+	<h2>Operating System</h2>
+	<div id="android">
+		<input type="radio" name="androidos" value="7.1" checked onclick="updateOs();">Android OS 7.1
+	</div>
+	<div id="apple" style="display:none;">
+		<input type="radio" name="ios" value="11.3" checked onclick="updateOs();">iOS 11.3
+	</div>
+	<h2>Phone Color</h2>
+	<input type="radio" value="black" name="whichColor" checked onclick="updateColor();">Black<br/>
+	<input type="radio" value="white" name="whichColor" onclick="updateColor();">White<br/>
+	<input type="radio" value="none" name="whichColor" onclick="updateColor();">Just Screen<br/>
+	<h2>Phone Rotation</h2>
+	<input type="radio" value="portrait" name="orientation" checked onclick="updateOrientation();">Portrait<br/>
+	<input type="radio" value="landscape" name="orientation" onclick="updateOrientation();">Landscape<br/><br/>
+	<input type="button" value="Apply" onclick="updateUrl()" name="apply">
+	</form>
+	<!--<button onclick="document.getElementById('iframethingy').height=660;document.getElementById('iframethingy').src='https://appetize.io/embed/8bnmakzrptf1hv9dq7v7bnteem?screenOnly=false&autoplay=true&embed=true&device=iphonex&xdocMsg=true&deviceColor='+colorThing+'&xDocMsg=true&orientation=''&debug=true&params=%7B%22EXKernelLaunchUrlDefaultsKey%22:%22exp:%2F%2Fexpo.io%2F@snack%2Fsdk.27.0.0-HJ0VvlWCG%22,%22EXKernelDisableNuxDefaultsKey%22:true%7D&scale=75&osVersion=11.3'">iPhone</button>
+    <button onclick="document.getElementById('iframethingy').height=620;document.getElementById('iframethingy').src='https://appetize.io/embed/xc1w6f1krd589zhp22a0mgftyw?screenOnly=false&autoplay=true&embed=true&device=nexus5&launchUrl=exp:%2F%2Fexpo.io%2F@snack%2Fsdk.27.0.0-HJ0VvlWCG&xdocMsg=true&deviceColor='+colorThing+'&xDocMsg=true&orientation=portrait&debug=true&params=%7B%22EXKernelLaunchUrlDefaultsKey%22:%22exp:%2F%2Fexpo.io%2F@snack%2Fsdk.27.0.0-HJ0VvlWCG%22,%22EXKernelDisableNuxDefaultsKey%22:true%7D&scale=75&osVersion=7.1';">Android</button>-->
+  </center>
+  </body>
+</html>
